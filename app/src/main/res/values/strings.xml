@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Doomsday Algorithm Training App</string>
+    <string name="practice_mode_item">Practice Mode</string>
+    <string name="standard_mode_item">Standard Mode</string>
+    <string name="challenge_mode_item">Challenge Mode</string>
+    <string name="two_player_mode_item">Two-Player Mode</string>
+    <string name="scoreboards_item">Scoreboards</string>
+    <string name="settings_item">Settings</string>
+    <string name="quit_item">Quit</string>
+    <string name="select_mode_label">Select A Mode:</string>
+    <string name="tutorial_mode_item">Tutorial Mode</string>
+    <string name="quiz_mode_item">Quiz Mode</string>
+    <string name="select_difficulty_label">Select Difficulty:</string>
+    <string name="easy_mode_item">Easy Mode</string>
+    <string name="normal_mode_item">Normal Mode</string>
+    <string name="hard_mode_item">Hard Mode</string>
+    <string name="title_activity_tutorial_mode">TutorialMode</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
