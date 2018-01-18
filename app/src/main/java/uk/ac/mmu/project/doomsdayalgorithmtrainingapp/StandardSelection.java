@@ -27,6 +27,6 @@ public class StandardSelection extends AppCompatActivity {
     }
 
     public void hardOnClick(View v) {
-
+        startMode(HardMode.class);
     }
 }

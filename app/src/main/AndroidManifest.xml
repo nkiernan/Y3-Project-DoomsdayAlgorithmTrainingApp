@@ -29,13 +29,16 @@
             android:label="@string/standard_mode_item" />
         <activity
             android:name=".TutorialMode"
-            android:label="@string/title_activity_tutorial_mode"
+            android:label="@string/tutorial_mode_item"
             android:parentActivityName=".PracticeSelection"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.PracticeSelection" />
         </activity>
+        <activity
+            android:name=".HardMode"
+            android:label="@string/hard_mode_item"/>
     </application>
 
 </manifest>
