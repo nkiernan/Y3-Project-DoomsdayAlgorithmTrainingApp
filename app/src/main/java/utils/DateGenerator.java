@@ -85,7 +85,15 @@ public class DateGenerator {
     }
 
     private void setYear() {
-        this.year = rand.nextInt(2100 + 1 - 1900) + 1900;
+        this.year = rand.nextInt(2199 + 1 - 1800) + 1800;
+    }
+
+    public int getMonth() {
+        return this.month;
+    }
+
+    public int getYear() {
+        return this.year;
     }
 
     @Override

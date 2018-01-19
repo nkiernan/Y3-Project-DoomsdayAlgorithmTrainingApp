@@ -37,8 +37,8 @@
                 android:value="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.PracticeSelection" />
         </activity>
         <activity
-            android:name=".HardMode"
-            android:label="@string/hard_mode_item"/>
+            android:name=".StandardMode"
+            android:label="@string/standard_mode_item"/>
     </application>
 
 </manifest>

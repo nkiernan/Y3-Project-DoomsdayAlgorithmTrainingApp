@@ -23,6 +23,11 @@
     <string name="default_score">0/0</string>
     <string name="timer">Time: </string>
     <string name="default_time">0:00</string>
+    <string name="leap_year">(Leap Year)</string>
+    <string name="common_year">(Common Year)</string>
+    <string name="doomsday_algorithm">Doomsday Algorithm</string>
+    <string name="sigma_symbol">Sigma Symbol</string>
+    <string name="end_of_round">End of Round!</string>
     <string name="monday_button">Monday Button</string>
     <string name="tuesday_button">Tuesday Button</string>
     <string name="wednesday_button">Wednesday Button</string>
@@ -30,9 +35,9 @@
     <string name="friday_button">Friday Button</string>
     <string name="saturday_button">Saturday Button</string>
     <string name="sunday_button">Sunday Button</string>
-    <string name="end_of_round">End of Round!</string>
-    <string name="game_over">Game Over!</string>
-
+    <string name="cancel_button">Cancel Button</string>
+    <string name="doomsday_button">Doomsday Button</string>
+    <string name="anchor_button">Anchor Button</string>
     <string name="placeholder_1">Placeholder 1</string>
     <string name="placeholder_2">Placeholder 2</string>
     <string name="placeholder_3">Placeholder 3</string>

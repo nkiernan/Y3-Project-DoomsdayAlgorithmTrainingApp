@@ -13,20 +13,21 @@ public class StandardSelection extends AppCompatActivity {
         setContentView(R.layout.activity_standard_selection);
     }
 
-    private void startMode(Class c) {
-        Intent intent = new Intent(getApplicationContext(), c);
+    private void startMode(String difficulty) {
+        Intent intent = new Intent(getApplicationContext(), StandardMode.class);
+        intent.putExtra("modeSelected", difficulty);
         startActivity(intent);
     }
 
     public void easyOnClick(View v) {
-
+        startMode("easy");
     }
 
     public void normalOnClick(View v) {
-
+        startMode("normal");
     }
 
     public void hardOnClick(View v) {
-        startMode(HardMode.class);
+        startMode("hard");
     }
 }
