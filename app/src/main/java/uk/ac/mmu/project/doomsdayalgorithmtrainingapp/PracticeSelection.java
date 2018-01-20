@@ -27,6 +27,6 @@ public class PracticeSelection extends AppCompatActivity {
     }
 
     public void practiceOnClick(View v) {
-
+        startMode(PracticeMode.class);
     }
 }

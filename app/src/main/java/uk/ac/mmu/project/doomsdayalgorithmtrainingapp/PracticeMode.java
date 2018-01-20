@@ -2,8 +2,6 @@ package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,44 +10,17 @@ import android.widget.TextView;
 
 import utils.DateGenerator;
 
-public class StandardMode extends AppCompatActivity {
+public class PracticeMode extends AppCompatActivity {
 
     private DateGenerator date;
-    private int currentScore = 0;
-    private int dateCount = 0;
     private boolean acceptAnswer = true;
-    private long startTime = 0L;
-    private Handler timer = new Handler();
-    long currentMs = 0L;
-    long timeSwap = 0L;
-    long endTime = 0L;
-    private TextView runningTimeLabel;
-    
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_standard_mode);
+        setContentView(R.layout.activity_practice_mode);
 
-        Bundle extras = getIntent().getExtras();
-        assert extras != null;
-        String difficulty = (String) extras.get("modeSelected");
-        TextView leapYearLabel = findViewById(R.id.leapYearLabel);
-        ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
-        ImageView anchorDisplay = findViewById(R.id.anchorDisplay);
-        ImageView doomsdayButton = findViewById(R.id.doomsdayButton);
-        runningTimeLabel = findViewById(R.id.runningTimeLabel);
-
-        assert difficulty != null;
-        if (difficulty.equals("normal")) {
-            showAlgorithmButton.setVisibility(View.INVISIBLE);
-        } else if (difficulty.equals("hard")) {
-            leapYearLabel.setVisibility(View.INVISIBLE);
-            showAlgorithmButton.setVisibility(View.INVISIBLE);
-            anchorDisplay.setVisibility(View.INVISIBLE);
-            doomsdayButton.setVisibility(View.INVISIBLE);
-        }
-
-        startTimer();
         updateScreen();
     }
 
@@ -57,23 +28,14 @@ public class StandardMode extends AppCompatActivity {
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
-        if (dateCount < 5) {
-            date = new DateGenerator();
-            givenDate.setText(date.toString());
-            if (date.getYear() % 4 == 0) {
-                leapYearLabel.setText(R.string.leap_year);
-            } else if (date.getYear() % 4 != 0) {
-                leapYearLabel.setText(R.string.common_year);
-            }
-            acceptAnswer = true;
-            startTimer();
-        } else {
-            givenDate.setText(R.string.end_of_round);
-            if (leapYearLabel.getVisibility() == View.VISIBLE) {
-                leapYearLabel.setVisibility(View.INVISIBLE);
-            }
-            acceptAnswer = false;
+        date = new DateGenerator();
+        givenDate.setText(date.toString());
+        if (date.getYear() % 4 == 0) {
+            leapYearLabel.setText(R.string.leap_year);
+        } else if (date.getYear() % 4 != 0) {
+            leapYearLabel.setText(R.string.common_year);
         }
+        acceptAnswer = true;
     }
 
     public void toggleAlgorithmDisplay(String display) {
@@ -106,16 +68,11 @@ public class StandardMode extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     public void processAnswer(int i) {
-        pauseTimer();
         acceptAnswer = false;
-        dateCount++;
         final Snackbar answerMessage;
         int correctDate = date.getDayOfWeek();
 
         if (correctDate == i) {
-            currentScore++;
-            TextView score = findViewById(R.id.runningScoreLabel);
-            score.setText(String.format("%d/5", currentScore));
             answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode), "You are correct!", Snackbar.LENGTH_INDEFINITE);
             answerMessage.setAction("Next", new View.OnClickListener() {
                 @Override
@@ -216,31 +173,4 @@ public class StandardMode extends AppCompatActivity {
             Snackbar.make(v, "Doomsday Hint: " + doomsdayHint, Snackbar.LENGTH_LONG).show();
         }
     }
-
-    public void startTimer() {
-        startTime = SystemClock.uptimeMillis();
-        timer.postDelayed(updateTimer, 0);
-    }
-
-    public void pauseTimer() {
-        timeSwap += currentMs;
-        timer.removeCallbacks(updateTimer);
-    }
-
-    private Runnable updateTimer = new Runnable() {
-
-        @SuppressLint({"SetTextI18n", "DefaultLocale"})
-        @Override
-        public void run() {
-            currentMs = SystemClock.uptimeMillis() - startTime;
-            endTime = timeSwap + currentMs;
-
-            int seconds = (int)(endTime / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-
-            runningTimeLabel.setText(minutes + ":" + String.format("%02d", seconds));
-            timer.postDelayed(this, 0);
-        }
-    };
 }

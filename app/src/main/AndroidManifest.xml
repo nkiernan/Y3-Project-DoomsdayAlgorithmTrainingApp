@@ -38,7 +38,10 @@
         </activity>
         <activity
             android:name=".StandardMode"
-            android:label="@string/standard_mode_item"/>
+            android:label="@string/standard_mode_item" />
+        <activity
+            android:name=".PracticeMode"
+            android:label="@string/practice_mode_item" />
     </application>
 
 </manifest>

@@ -25,8 +25,6 @@ public class DateGenerator {
     }
 
     private static boolean validDate(int day, int month, int year) {
-        if (year < 1583)
-            return false;
         if (month < 1 || month > 12)
             return false;
         if (day < 1)
