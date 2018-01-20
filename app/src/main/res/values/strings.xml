@@ -15,6 +15,18 @@
     <string name="easy_mode_item">Easy Mode</string>
     <string name="normal_mode_item">Normal Mode</string>
     <string name="hard_mode_item">Hard Mode</string>
+    <string name="tutorial_part_1a">
+        You can use the Doomsday algorithm to mentally calculate the day of the week for a given date.\n\n
+        The first step is to memorise the Doomsday for each month:
+    </string>
+    <string name="tutorial_part_1b">Next, assign each weekday a numerical value:</string>
+    <string name="tutorial_part_1c">
+        Sunday: 0, Monday: 1\n\n
+        Tuesday: 2, Wednesday: 3\n\n
+        Thursday: 4, Friday: 5\n\n
+        Saturday: 6
+    </string>
+    <string name="doomsday_list">A list of Doomsdays</string>
     <string name="swipe_message">Swipe left to continue…</string>
     <string name="good_luck">Good Luck!</string>
     <string name="practice_mode_info">Information:\n\nWelcome!\n\nUse this mode to learn about and practice calculating the Doomsday algorithm!</string>

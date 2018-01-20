@@ -43,11 +43,11 @@ public class PracticeMode extends AppCompatActivity {
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
         ImageView closeButton = findViewById(R.id.closeButton);
 
-        if (display.equals("show")) {
+        if ("show".equals(display)) {
             showAlgorithmButton.setVisibility(View.INVISIBLE);
             doomsdayAlgorithm.setVisibility(View.VISIBLE);
             closeButton.setVisibility(View.VISIBLE);
-        } else if (display.equals("hide")) {
+        } else if ("hide".equals(display)) {
             showAlgorithmButton.setVisibility(View.VISIBLE);
             doomsdayAlgorithm.setVisibility(View.INVISIBLE);
             closeButton.setVisibility(View.INVISIBLE);

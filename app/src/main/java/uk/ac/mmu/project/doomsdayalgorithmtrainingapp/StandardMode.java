@@ -20,9 +20,8 @@ public class StandardMode extends AppCompatActivity {
     private boolean acceptAnswer = true;
     private long startTime = 0L;
     private Handler timer = new Handler();
-    long currentMs = 0L;
-    long timeSwap = 0L;
-    long endTime = 0L;
+    private long currentMs = 0L;
+    private long timeSwap = 0L;
     private TextView runningTimeLabel;
     
     @Override
@@ -40,9 +39,9 @@ public class StandardMode extends AppCompatActivity {
         runningTimeLabel = findViewById(R.id.runningTimeLabel);
 
         assert difficulty != null;
-        if (difficulty.equals("normal")) {
+        if ("normal".equals(difficulty)) {
             showAlgorithmButton.setVisibility(View.INVISIBLE);
-        } else if (difficulty.equals("hard")) {
+        } else if ("hard".equals(difficulty)) {
             leapYearLabel.setVisibility(View.INVISIBLE);
             showAlgorithmButton.setVisibility(View.INVISIBLE);
             anchorDisplay.setVisibility(View.INVISIBLE);
@@ -81,11 +80,11 @@ public class StandardMode extends AppCompatActivity {
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
         ImageView closeButton = findViewById(R.id.closeButton);
 
-        if (display.equals("show")) {
+        if ("show".equals(display)) {
             showAlgorithmButton.setVisibility(View.INVISIBLE);
             doomsdayAlgorithm.setVisibility(View.VISIBLE);
             closeButton.setVisibility(View.VISIBLE);
-        } else if (display.equals("hide")) {
+        } else if ("hide".equals(display)) {
             showAlgorithmButton.setVisibility(View.VISIBLE);
             doomsdayAlgorithm.setVisibility(View.INVISIBLE);
             closeButton.setVisibility(View.INVISIBLE);
@@ -233,7 +232,7 @@ public class StandardMode extends AppCompatActivity {
         @Override
         public void run() {
             currentMs = SystemClock.uptimeMillis() - startTime;
-            endTime = timeSwap + currentMs;
+            long endTime = timeSwap + currentMs;
 
             int seconds = (int)(endTime / 1000);
             int minutes = seconds / 60;
