@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.624" />
+        app:layout_constraintVertical_bias="0.63" />
 
     <TextView
         android:id="@+id/tutorialLabel1c"
@@ -77,22 +77,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <TextView
         android:id="@+id/swipeLabel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20sp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@android:color/holo_blue_light"
         android:fontFamily="@font/press_start_2p"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/swipe_message"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="12sp"
         android:textStyle="italic"
         android:visibility="visible"

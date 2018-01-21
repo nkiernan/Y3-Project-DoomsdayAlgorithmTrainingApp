@@ -143,7 +143,7 @@ public class PracticeMode extends AppCompatActivity {
             if (date.getYear() >= 1800 && date.getYear() <= 1899) {
                 anchorDay = "Finally, TGIF!";
             } else if (date.getYear() >= 1900 && date.getYear() <= 1999) {
-                anchorDay = "Midweek! Two more days til weekend";
+                anchorDay = "Two days til weekend!";
             } else if (date.getYear() >= 2000 && date.getYear() <= 2099) {
                 anchorDay = "It's midweek tomorrow...";
             } else if (date.getYear() >= 2100 && date.getYear() <= 2199) {
@@ -164,7 +164,7 @@ public class PracticeMode extends AppCompatActivity {
             } else if (date.getMonth() == 3) {
                 doomsdayHint = "Pi to 2 decimal places";
             } else if (date.getMonth() >= 4 && date.getMonth() % 2 == 0) {
-                doomsdayHint = "You don't EVEN have to ask TWICE";
+                doomsdayHint = "Don't EVEN ask TWICE";
             } else if (date.getMonth() == 5 || date.getMonth() == 9) {
                 doomsdayHint = "What a way to make a living...";
             } else if (date.getMonth() == 7 || date.getMonth() == 11) {

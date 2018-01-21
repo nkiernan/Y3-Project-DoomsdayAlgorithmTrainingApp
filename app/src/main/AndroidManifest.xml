@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -42,6 +42,10 @@
         <activity
             android:name=".PracticeMode"
             android:label="@string/practice_mode_item" />
+        <activity
+            android:name=".QuizMode"
+            android:label="@string/quiz_mode_item"
+            />
     </application>
 
 </manifest>

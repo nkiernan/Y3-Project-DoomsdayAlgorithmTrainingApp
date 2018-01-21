@@ -19,6 +19,7 @@
         You can use the Doomsday algorithm to mentally calculate the day of the week for a given date.\n\n
         The first step is to memorise the Doomsday for each month:
     </string>
+    <string name="doomsday_list">A list of Doomsdays</string>
     <string name="tutorial_part_1b">Next, assign each weekday a numerical value:</string>
     <string name="tutorial_part_1c">
         Sunday: 0, Monday: 1\n\n
@@ -26,9 +27,52 @@
         Thursday: 4, Friday: 5\n\n
         Saturday: 6
     </string>
-    <string name="doomsday_list">A list of Doomsdays</string>
+    <string name="tutorial_part_2a">Anchor days also need to be memorised:</string>
+    <string name="anchordays_list">A list of anchor days</string>
+    <string name="tutorial_part_2b">With the previous information in mind, you can now calculate the day of the week using the following formula:</string>
+    <string name="tutorial_part_2c">
+        One final tip, memorise the following multiples:\n\n
+        Multiples of 7:\n7, 14, 21, 28, 35\n\n
+        Multiples of 12:\n12, 24, 36, 48,\n60, 72, 84, 96
+    </string>
+    <string name="tutorial_part_3a">Here, the date 3/2/1990 is used as an example:</string>
+    <string name="doomsday_example">An example of the Doomsday algorithm in use</string>
+    <string name="tutorial_part_3b">
+        The anchor day for 1990 is 3, which is Wednesday and the closest Doomsday to 3/2/1990 is 28/2. Next, the number of days between the Doomsday and our given date is 25.\n\n
+        25 divided by 7 gives a quotient of 3, meaning there is 3 weeks (21 days) between the Doomsday and the given date.\n\n
+        25 - 21 = 4, so going 4 days back from Wednesday (the Doomsday) gives Saturday.\n\n
+        This means that 3/2/1990 occurred on a Saturday
+    </string>
     <string name="swipe_message">Swipe left to continue…</string>
     <string name="good_luck">Good Luck!</string>
+    <string name="question_item">Question </string>
+    <string name="default_question_number">1</string>
+    <string name="question_1">Select the weekday number for Friday</string>
+    <string name="answer_1a">1</string>
+    <string name="answer_1b">3</string>
+    <string name="answer_1c">5</string>
+    <string name="answer_1d">0</string>
+    <string name="question_2">Wednesday is the anchor day for which century?</string>
+    <string name="answer_2a">1800 – 1899</string>
+    <string name="answer_2b">1900 – 1999</string>
+    <string name="answer_2c">2000 – 2099</string>
+    <string name="answer_2d">2100 – 2199</string>
+    <string name="question_3">Which month\'s Doomsday is affected by a leap year?</string>
+    <string name="answer_3a">January</string>
+    <string name="answer_3b">March</string>
+    <string name="answer_3c">August</string>
+    <string name="answer_3d">September</string>
+    <string name="question_4">What is the Doomsday for July?</string>
+    <string name="answer_4a">7/7</string>
+    <string name="answer_4b">7/11</string>
+    <string name="answer_4c">11/7</string>
+    <string name="answer_4d">11/11</string>
+    <string name="question_5">Which of these is a correct Doomsday for February?</string>
+    <string name="answer_5a">2</string>
+    <string name="answer_5b">12</string>
+    <string name="answer_5c">27</string>
+    <string name="answer_5d">29</string>
+    <string name="answer_button">Answer Button</string>
     <string name="practice_mode_info">Information:\n\nWelcome!\n\nUse this mode to learn about and practice calculating the Doomsday algorithm!</string>
     <string name="standard_mode_info">Information:\n\nSolve 5 dates as quickly and correctly as you can!\n\nTry your best to beat your previous attempts!</string>
     <string name="default_date">1/1/1801</string>
@@ -51,7 +95,4 @@
     <string name="cancel_button">Cancel Button</string>
     <string name="doomsday_button">Doomsday Button</string>
     <string name="anchor_button">Anchor Button</string>
-    <string name="placeholder_1">Placeholder 1</string>
-    <string name="placeholder_2">Placeholder 2</string>
-    <string name="placeholder_3">Placeholder 3</string>
 </resources>

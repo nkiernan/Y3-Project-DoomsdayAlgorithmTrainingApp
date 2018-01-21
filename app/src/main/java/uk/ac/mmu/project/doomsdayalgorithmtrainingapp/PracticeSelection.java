@@ -23,7 +23,7 @@ public class PracticeSelection extends AppCompatActivity {
     }
 
     public void quizOnClick(View v) {
-
+        startMode(QuizMode.class);
     }
 
     public void practiceOnClick(View v) {
