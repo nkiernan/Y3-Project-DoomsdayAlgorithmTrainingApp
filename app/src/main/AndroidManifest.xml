@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,8 +46,13 @@
             android:label="@string/practice_mode_item" />
         <activity
             android:name=".QuizMode"
-            android:label="@string/quiz_mode_item"
-            />
+            android:label="@string/quiz_mode_item" />
+        <activity
+            android:name=".ChallengeMode"
+            android:label="@string/challenge_mode_item" />
+        <activity
+            android:name=".TwoPlayerMode"
+            android:label="@string/two_player_mode_item" />
     </application>
 
 </manifest>

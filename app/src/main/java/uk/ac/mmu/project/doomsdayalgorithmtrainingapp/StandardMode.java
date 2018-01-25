@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import utils.DateGenerator;
 
-public class StandardMode extends AppCompatActivity {
+public class StandardMode extends AppCompatActivity implements View.OnClickListener {
 
     private DateGenerator date;
     private int currentScore = 0;
@@ -23,7 +23,7 @@ public class StandardMode extends AppCompatActivity {
     private long currentMs = 0L;
     private long timeSwap = 0L;
     private TextView runningTimeLabel;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,21 @@ public class StandardMode extends AppCompatActivity {
             anchorDisplay.setVisibility(View.INVISIBLE);
             doomsdayButton.setVisibility(View.INVISIBLE);
         }
+
+        ImageView mondayButton = findViewById(R.id.mondayButton);
+        mondayButton.setOnClickListener(this);
+        ImageView tuesdayButton = findViewById(R.id.tuesdayButton);
+        tuesdayButton.setOnClickListener(this);
+        ImageView wednesdayButton = findViewById(R.id.wednesdayButton);
+        wednesdayButton.setOnClickListener(this);
+        ImageView thursdayButton = findViewById(R.id.thursdayButton);
+        thursdayButton.setOnClickListener(this);
+        ImageView fridayButton = findViewById(R.id.fridayButton);
+        fridayButton.setOnClickListener(this);
+        ImageView saturdayButton = findViewById(R.id.saturdayButton);
+        saturdayButton.setOnClickListener(this);
+        ImageView sundayButton = findViewById(R.id.sundayButton);
+        sundayButton.setOnClickListener(this);
 
         startTimer();
         updateScreen();
@@ -137,45 +152,34 @@ public class StandardMode extends AppCompatActivity {
         }
     }
 
-    public void mondayOnClick(View v) {
+    @Override
+    public void onClick(View v) {
         if (acceptAnswer) {
-            processAnswer(1);
-        }
-    }
-
-    public void tuesdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(2);
-        }
-    }
-
-    public void wednesdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(3);
-        }
-    }
-
-    public void thursdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(4);
-        }
-    }
-
-    public void fridayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(5);
-        }
-    }
-
-    public void saturdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(6);
-        }
-    }
-
-    public void sundayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(0);
+            switch (v.getId()) {
+                case R.id.mondayButton:
+                    processAnswer(1);
+                    break;
+                case R.id.tuesdayButton:
+                    processAnswer(2);
+                    break;
+                case R.id.wednesdayButton:
+                    processAnswer(3);
+                    break;
+                case R.id.thursdayButton:
+                    processAnswer(4);
+                    break;
+                case R.id.fridayButton:
+                    processAnswer(5);
+                    break;
+                case R.id.saturdayButton:
+                    processAnswer(6);
+                    break;
+                case R.id.sundayButton:
+                    processAnswer(0);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -234,7 +238,7 @@ public class StandardMode extends AppCompatActivity {
             currentMs = SystemClock.uptimeMillis() - startTime;
             long endTime = timeSwap + currentMs;
 
-            int seconds = (int)(endTime / 1000);
+            int seconds = (int) (endTime / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
 

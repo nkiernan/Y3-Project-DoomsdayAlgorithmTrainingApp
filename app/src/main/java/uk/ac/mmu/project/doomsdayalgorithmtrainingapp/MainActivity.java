@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void challengeOnClick(View v) {
-
+        startMode(ChallengeMode.class);
     }
 
     public void twoPlayerOnClick(View v) {
-
+        startMode(TwoPlayerMode.class);
     }
 
     public void scoreboardsOnClick(View v) {

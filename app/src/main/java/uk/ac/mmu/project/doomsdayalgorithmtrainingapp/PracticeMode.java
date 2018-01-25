@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import utils.DateGenerator;
 
-public class PracticeMode extends AppCompatActivity {
+public class PracticeMode extends AppCompatActivity implements View.OnClickListener {
 
     private DateGenerator date;
     private boolean acceptAnswer = true;
@@ -20,6 +20,21 @@ public class PracticeMode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_mode);
+
+        ImageView mondayButton = findViewById(R.id.mondayButton);
+        mondayButton.setOnClickListener(this);
+        ImageView tuesdayButton = findViewById(R.id.tuesdayButton);
+        tuesdayButton.setOnClickListener(this);
+        ImageView wednesdayButton = findViewById(R.id.wednesdayButton);
+        wednesdayButton.setOnClickListener(this);
+        ImageView thursdayButton = findViewById(R.id.thursdayButton);
+        thursdayButton.setOnClickListener(this);
+        ImageView fridayButton = findViewById(R.id.fridayButton);
+        fridayButton.setOnClickListener(this);
+        ImageView saturdayButton = findViewById(R.id.saturdayButton);
+        saturdayButton.setOnClickListener(this);
+        ImageView sundayButton = findViewById(R.id.sundayButton);
+        sundayButton.setOnClickListener(this);
 
         updateScreen();
     }
@@ -36,6 +51,12 @@ public class PracticeMode extends AppCompatActivity {
             leapYearLabel.setText(R.string.common_year);
         }
         acceptAnswer = true;
+    }
+
+    public void refreshDate(View v) {
+        if (acceptAnswer) {
+            updateScreen();
+        }
     }
 
     public void toggleAlgorithmDisplay(String display) {
@@ -95,45 +116,34 @@ public class PracticeMode extends AppCompatActivity {
         }
     }
 
-    public void mondayOnClick(View v) {
+    @Override
+    public void onClick(View v) {
         if (acceptAnswer) {
-            processAnswer(1);
-        }
-    }
-
-    public void tuesdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(2);
-        }
-    }
-
-    public void wednesdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(3);
-        }
-    }
-
-    public void thursdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(4);
-        }
-    }
-
-    public void fridayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(5);
-        }
-    }
-
-    public void saturdayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(6);
-        }
-    }
-
-    public void sundayOnClick(View v) {
-        if (acceptAnswer) {
-            processAnswer(0);
+            switch (v.getId()) {
+                case R.id.mondayButton:
+                    processAnswer(1);
+                    break;
+                case R.id.tuesdayButton:
+                    processAnswer(2);
+                    break;
+                case R.id.wednesdayButton:
+                    processAnswer(3);
+                    break;
+                case R.id.thursdayButton:
+                    processAnswer(4);
+                    break;
+                case R.id.fridayButton:
+                    processAnswer(5);
+                    break;
+                case R.id.saturdayButton:
+                    processAnswer(6);
+                    break;
+                case R.id.sundayButton:
+                    processAnswer(0);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
