@@ -20,14 +20,14 @@ public class StandardSelection extends AppCompatActivity {
     }
 
     public void easyOnClick(View v) {
-        startMode("easy");
+        startMode("Easy");
     }
 
     public void normalOnClick(View v) {
-        startMode("normal");
+        startMode("Normal");
     }
 
     public void hardOnClick(View v) {
-        startMode("hard");
+        startMode("Hard");
     }
 }

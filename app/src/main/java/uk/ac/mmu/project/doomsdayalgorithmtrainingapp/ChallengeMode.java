@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import data.Scoreboard;
+import io.realm.Realm;
 import utils.DateGenerator;
 
 public class ChallengeMode extends AppCompatActivity implements View.OnClickListener {
 
+    private Realm realm;
     private DateGenerator date;
     private int currentScore = 0;
     private boolean acceptAnswer = true;
@@ -28,6 +31,8 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge_mode);
 
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
         runningTimeLabel = findViewById(R.id.runningTimeLabel);
 
         ImageView mondayButton = findViewById(R.id.mondayButton);
@@ -73,6 +78,12 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
             updateScreen(true);
         } else {
             pauseTimer();
+            if (currentScore != 0) {
+                TextView time = findViewById(R.id.runningTimeLabel);
+                realm.beginTransaction();
+                realm.copyToRealm(new Scoreboard("Challenge", currentScore, time.getText().toString()));
+                realm.commitTransaction();
+            }
             acceptAnswer = false;
             final Snackbar answerMessage;
 

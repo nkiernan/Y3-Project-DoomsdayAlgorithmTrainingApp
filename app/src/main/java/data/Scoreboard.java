@@ -1,4 +1,4 @@
-package utils;
+package data;
 
 import io.realm.RealmObject;
 
@@ -37,5 +37,14 @@ public class Scoreboard extends RealmObject {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Scoreboard{" +
+                "mode='" + mode + '\'' +
+                ", score=" + score +
+                ", time='" + time + '\'' +
+                '}';
     }
 }

@@ -53,6 +53,7 @@
         <activity
             android:name=".TwoPlayerMode"
             android:label="@string/two_player_mode_item" />
+        <activity android:name=".ScoreboardsMode"></activity>
     </application>
 
 </manifest>

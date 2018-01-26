@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import data.Scoreboard;
+import io.realm.Realm;
 import utils.DateGenerator;
 
 public class StandardMode extends AppCompatActivity implements View.OnClickListener {
 
+    private Realm realm;
+    String difficulty;
     private DateGenerator date;
     private int currentScore = 0;
     private int dateCount = 0;
@@ -29,9 +33,11 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standard_mode);
 
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
         Bundle extras = getIntent().getExtras();
         assert extras != null;
-        String difficulty = (String) extras.get("modeSelected");
+        difficulty = (String) extras.get("modeSelected");
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView anchorDisplay = findViewById(R.id.anchorDisplay);
@@ -39,9 +45,9 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         runningTimeLabel = findViewById(R.id.runningTimeLabel);
 
         assert difficulty != null;
-        if ("normal".equals(difficulty)) {
+        if ("Normal".equals(difficulty)) {
             showAlgorithmButton.setVisibility(View.INVISIBLE);
-        } else if ("hard".equals(difficulty)) {
+        } else if ("Hard".equals(difficulty)) {
             leapYearLabel.setVisibility(View.INVISIBLE);
             showAlgorithmButton.setVisibility(View.INVISIBLE);
             anchorDisplay.setVisibility(View.INVISIBLE);
@@ -82,6 +88,12 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
             acceptAnswer = true;
             startTimer();
         } else {
+            if (currentScore != 0) {
+                TextView time = findViewById(R.id.runningTimeLabel);
+                realm.beginTransaction();
+                realm.copyToRealm(new Scoreboard(difficulty, currentScore, time.getText().toString()));
+                realm.commitTransaction();
+            }
             givenDate.setText(R.string.end_of_round);
             if (leapYearLabel.getVisibility() == View.VISIBLE) {
                 leapYearLabel.setVisibility(View.INVISIBLE);

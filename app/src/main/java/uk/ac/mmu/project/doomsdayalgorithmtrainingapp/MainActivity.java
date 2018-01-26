@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import data.Scoreboard;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void scoreboardsOnClick(View v) {
-
+        startMode(ScoreboardsMode.class);
     }
 
     public void settingsOnClick(View v) {
