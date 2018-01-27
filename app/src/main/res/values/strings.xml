@@ -77,7 +77,7 @@
     <string name="divider">Screen Divider</string>
     <string name="practice_mode_info">Information:\n\nWelcome!\n\nUse this mode to learn about and practice calculating the Doomsday algorithm!</string>
     <string name="standard_mode_info">Information:\n\nSolve 5 dates as quickly and correctly as you can!\n\nTry your best to beat your previous attempts!</string>
-    <string name="default_date">1/1/1801</string>
+    <string name="default_date">01/01/1801</string>
     <string name="score">Score: </string>
     <string name="default_standard_score">0/5</string>
     <string name="default_challenge_score">0</string>
@@ -105,4 +105,16 @@
     <string name="cancel_button">Cancel Button</string>
     <string name="doomsday_button">Doomsday Button</string>
     <string name="anchor_button">Anchor Button</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="challenge">Challenge</string>
+    <string name="number_column">#</string>
+    <string name="score_column">Score</string>
+    <string name="time_column">Time</string>
+    <string name="one">1:</string>
+    <string name="two">2:</string>
+    <string name="three">3:</string>
+    <string name="four">4:</string>
+    <string name="five">5:</string>
 </resources>

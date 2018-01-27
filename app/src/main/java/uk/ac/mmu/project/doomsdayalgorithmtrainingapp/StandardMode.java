@@ -17,7 +17,7 @@ import utils.DateGenerator;
 public class StandardMode extends AppCompatActivity implements View.OnClickListener {
 
     private Realm realm;
-    String difficulty;
+    private String difficulty;
     private DateGenerator date;
     private int currentScore = 0;
     private int dateCount = 0;
