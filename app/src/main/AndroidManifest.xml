@@ -54,14 +54,9 @@
             android:name=".TwoPlayerMode"
             android:label="@string/two_player_mode_item" />
         <activity
-            android:name=".ScoreboardsMode"
-            android:label="@string/scoreboards_item"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.MainActivity" />
-        </activity>
+            android:name=".SettingsMode"
+            android:label="@string/settings_item" />
+        <activity android:name=".ScoreboardsMode"></activity>
     </application>
 
 </manifest>
