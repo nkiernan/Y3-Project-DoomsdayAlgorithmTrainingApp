@@ -1,6 +1,8 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -19,6 +21,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
     private Realm realm;
     private String difficulty;
     private DateGenerator date;
+    private String dateFormat;
     private int currentScore = 0;
     private int dateCount = 0;
     private boolean acceptAnswer = true;
@@ -69,6 +72,9 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
+        dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
+
         startTimer();
         updateScreen();
     }
@@ -78,8 +84,12 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
         if (dateCount < 5) {
-            date = new DateGenerator();
-            givenDate.setText(date.toString());
+            if ("Easy".equals(difficulty)) {
+                date = new DateGenerator("easy");
+            } else {
+                date = new DateGenerator("normal");
+            }
+            givenDate.setText(date.toFormat(dateFormat));
             if (date.getYear() % 4 == 0) {
                 leapYearLabel.setText(R.string.leap_year);
             } else if (date.getYear() % 4 != 0) {
@@ -96,10 +106,28 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
             }
             givenDate.setText(R.string.end_of_round);
             if (leapYearLabel.getVisibility() == View.VISIBLE) {
-                leapYearLabel.setVisibility(View.INVISIBLE);
+                leapYearLabel.setText("");
             }
             acceptAnswer = false;
+            ImageView refreshButton = findViewById(R.id.refreshButton);
+            refreshButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void refreshMode(View v) {
+        ImageView refreshButton = findViewById(R.id.refreshButton);
+        refreshButton.setVisibility(View.INVISIBLE);
+
+        currentScore = 0;
+        dateCount = 0;
+        startTime = 0L;
+        currentMs = 0L;
+        timeSwap = 0L;
+
+        TextView score = findViewById(R.id.runningScoreLabel);
+        score.setText(String.format("%d/5", currentScore));
+        updateScreen();
     }
 
     public void toggleAlgorithmDisplay(String display) {

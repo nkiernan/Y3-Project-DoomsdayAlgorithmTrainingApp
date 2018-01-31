@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 public class TutorialPart2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tutorial_part2, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.tutorial_part2, container, false);
     }
 }

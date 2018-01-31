@@ -1,6 +1,8 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -18,6 +20,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
 
     private Realm realm;
     private DateGenerator date;
+    private String dateFormat;
     private int currentScore = 0;
     private boolean acceptAnswer = true;
     private long startTime = 0L;
@@ -50,6 +53,9 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
+        dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
+
         startTimer();
         updateScreen(true);
     }
@@ -58,13 +64,31 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         TextView givenDate = findViewById(R.id.dateLabel);
 
         if (correctAnswer) {
-            date = new DateGenerator();
-            givenDate.setText(date.toString());
+            date = new DateGenerator("normal");
+            givenDate.setText(date.toFormat(dateFormat));
             acceptAnswer = true;
         } else {
             givenDate.setText(R.string.end_of_round);
             acceptAnswer = false;
+            ImageView refreshButton = findViewById(R.id.refreshButton);
+            refreshButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void refreshMode(View v) {
+        ImageView refreshButton = findViewById(R.id.refreshButton);
+        refreshButton.setVisibility(View.INVISIBLE);
+
+        currentScore = 0;
+        startTime = 0L;
+        currentMs = 0L;
+        timeSwap = 0L;
+
+        TextView score = findViewById(R.id.runningScoreLabel);
+        score.setText(String.valueOf(currentScore));
+        startTimer();
+        updateScreen(true);
     }
 
     @SuppressLint("DefaultLocale")

@@ -111,6 +111,8 @@
     <string name="challenge">Challenge</string>
     <string name="number_column">#</string>
     <string name="score_column">Score</string>
+    <string name="time_overall">Overall Time</string>
+    <string name="time_average">Average Time</string>
     <string name="time_column">Time</string>
     <string name="one">1</string>
     <string name="two">2</string>

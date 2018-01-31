@@ -56,7 +56,9 @@
         <activity
             android:name=".SettingsMode"
             android:label="@string/settings_item" />
-        <activity android:name=".ScoreboardsMode"></activity>
+        <activity
+            android:name=".ScoreboardsMode"
+            android:label="@string/scoreboards_item" />
     </application>
 
 </manifest>

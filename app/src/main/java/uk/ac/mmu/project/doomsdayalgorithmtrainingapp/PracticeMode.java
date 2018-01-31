@@ -1,6 +1,8 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import utils.DateGenerator;
 public class PracticeMode extends AppCompatActivity implements View.OnClickListener {
 
     private DateGenerator date;
+    private String dateFormat;
     private boolean acceptAnswer = true;
 
 
@@ -36,6 +39,9 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
+        dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
+
         updateScreen();
     }
 
@@ -43,8 +49,8 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
-        date = new DateGenerator();
-        givenDate.setText(date.toString());
+        date = new DateGenerator("easy");
+        givenDate.setText(date.toFormat(dateFormat));
         if (date.getYear() % 4 == 0) {
             leapYearLabel.setText(R.string.leap_year);
         } else if (date.getYear() % 4 != 0) {

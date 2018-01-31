@@ -1,6 +1,8 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +14,7 @@ import utils.DateGenerator;
 public class TwoPlayerMode extends AppCompatActivity implements View.OnClickListener {
 
     private DateGenerator date;
+    private String dateFormat;
     private int p1currentScore = 0;
     private int p2currentScore = 0;
     private int dateCount = 0;
@@ -52,6 +55,9 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         ImageView p2sundayButton = findViewById(R.id.p2sundayButton);
         p2sundayButton.setOnClickListener(this);
 
+        SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
+        dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
+
         updateScreen();
     }
 
@@ -60,9 +66,9 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         TextView p2date = findViewById(R.id.p2dateLabel);
 
         if (dateCount < 5) {
-            date = new DateGenerator();
-            p1date.setText(date.toString());
-            p2date.setText(date.toString());
+            date = new DateGenerator("normal");
+            p1date.setText(date.toFormat(dateFormat));
+            p2date.setText(date.toFormat(dateFormat));
             acceptAnswer = true;
 
         } else {
@@ -77,7 +83,30 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
                 p2date.setText(R.string.two_player_draw);
             }
             acceptAnswer = false;
+            ImageView refreshButton = findViewById(R.id.refreshButton);
+            refreshButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void refreshMode(View v) {
+        ImageView refreshButton = findViewById(R.id.refreshButton);
+        refreshButton.setVisibility(View.INVISIBLE);
+        p1currentScore = 0;
+        p2currentScore = 0;
+        dateCount = 0;
+
+        TextView p1score = findViewById(R.id.p1scoreLabel);
+        TextView p2opponentScore = findViewById(R.id.p2opponentScoreLabel);
+        p1score.setText(String.format("%d/5", p1currentScore));
+        p2opponentScore.setText(String.format("%d/5", p1currentScore));
+
+        TextView p2score = findViewById(R.id.p2scoreLabel);
+        TextView p1opponentScore = findViewById(R.id.p1opponentScoreLabel);
+        p2score.setText(String.format("%d/5", p2currentScore));
+        p1opponentScore.setText(String.format("%d/5", p2currentScore));
+
+        updateScreen();
     }
 
     @SuppressLint("DefaultLocale")
