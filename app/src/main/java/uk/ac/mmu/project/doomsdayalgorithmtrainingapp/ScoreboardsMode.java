@@ -179,9 +179,17 @@ public class ScoreboardsMode extends AppCompatActivity {
                     int totalMins = Integer.parseInt(time.split(":")[0]);
                     int totalSeconds = Integer.parseInt(time.split(":")[1]);
                     int totalMillis = Integer.parseInt(time.split(":")[2]);
-                    String averageTime = String.valueOf(Math.round((totalMins / score))
-                            + ":" + String.valueOf(Math.round(totalSeconds / score))
-                            + ":" + String.valueOf(Math.round(totalMillis / score)));
+                    String averageTime;
+
+                    if (totalSeconds / score < 10) {
+                        averageTime = String.valueOf(Math.round((totalMins / score))
+                                + ":0" + String.valueOf(Math.round(totalSeconds / score))
+                                + ":" + String.valueOf(Math.round(totalMillis / score)));
+                    } else {
+                        averageTime = String.valueOf(Math.round((totalMins / score))
+                                + ":" + String.valueOf(Math.round(totalSeconds / score))
+                                + ":" + String.valueOf(Math.round(totalMillis / score)));
+                    }
                     timeLabels[i].setText(averageTime);
                 }
                 scoreLabels[i].setText(String.valueOf(score));
