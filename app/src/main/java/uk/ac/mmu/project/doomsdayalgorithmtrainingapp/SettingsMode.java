@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class SettingsMode extends AppCompatActivity {
-    String dateFormat;
+    private String dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

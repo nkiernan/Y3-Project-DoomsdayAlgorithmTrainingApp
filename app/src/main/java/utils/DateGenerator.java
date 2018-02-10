@@ -115,11 +115,9 @@ public class DateGenerator {
             if (day == 6 || day == 13 || day == 20 || day == 27) {
                 return true;
             }
-        } else if (month == 9 || month == 12) {
-            if (day == 5 || day ==  12 || day == 19 || day == 26) {
+        } else if ((month == 9 || month == 12) && (day == 5 || day ==  12 || day == 19 || day == 26)) {
                 return true;
             }
-        }
         return false;
     }
 
