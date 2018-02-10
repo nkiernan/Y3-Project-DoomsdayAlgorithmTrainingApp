@@ -167,7 +167,7 @@ public class ScoreboardsMode extends AppCompatActivity {
                 .equalTo("mode", findMode())
                 .findAll();
 
-        scores = scores.sort("score", Sort.DESCENDING);
+        scores = scores.sort("score", Sort.DESCENDING, "time", Sort.ASCENDING);
 
         for (int i = 0; i < scores.size(); i++) {
             if (i < 5) {

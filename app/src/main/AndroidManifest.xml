@@ -25,40 +25,44 @@
 
         <activity
             android:name=".PracticeSelection"
-            android:label="@string/practice_mode_item" />
+            android:label="@string/practice_mode_item"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".StandardSelection"
-            android:label="@string/standard_mode_item" />
+            android:label="@string/standard_mode_item"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TutorialMode"
             android:label="@string/tutorial_mode_item"
-            android:parentActivityName=".PracticeSelection"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.PracticeSelection" />
-        </activity>
+            android:parentActivityName=".PracticeSelection" />
         <activity
             android:name=".StandardMode"
-            android:label="@string/standard_mode_item" />
+            android:label="@string/standard_mode_item"
+            android:parentActivityName=".StandardSelection" />
         <activity
             android:name=".PracticeMode"
-            android:label="@string/practice_mode_item" />
+            android:label="@string/practice_mode_item"
+            android:parentActivityName=".PracticeSelection" />
         <activity
             android:name=".QuizMode"
-            android:label="@string/quiz_mode_item" />
+            android:label="@string/quiz_mode_item"
+            android:parentActivityName=".PracticeSelection" />
         <activity
             android:name=".ChallengeMode"
-            android:label="@string/challenge_mode_item" />
+            android:label="@string/challenge_mode_item"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TwoPlayerMode"
-            android:label="@string/two_player_mode_item" />
+            android:label="@string/two_player_mode_item"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingsMode"
-            android:label="@string/settings_item" />
+            android:label="@string/settings_item"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ScoreboardsMode"
-            android:label="@string/scoreboards_item" />
+            android:label="@string/scoreboards_item"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
