@@ -1,9 +1,9 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,11 +91,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         scoreLabels[4] = findViewById(R.id.score5);
 
         for (TextView timeLabel : timeLabels) {
-            if (currentMode <= 2) {
                 timeLabel.setText(R.string.default_standard_time);
-            } else if (currentMode >= 3) {
-                timeLabel.setText(R.string.default_challenge_time);
-            }
         }
 
         for (TextView scoreLabel : scoreLabels) {
@@ -177,19 +173,17 @@ public class ScoreboardsMode extends AppCompatActivity {
                     timeLabels[i].setText(time);
                 } else if (currentMode == 4){
                     int totalMins = Integer.parseInt(time.split(":")[0]);
-                    int totalSeconds = Integer.parseInt(time.split(":")[1]);
-                    int totalMillis = Integer.parseInt(time.split(":")[2]);
-                    String averageTime;
+                    double totalSeconds = Integer.parseInt(time.split(":")[1]);
+                    int averageMins = totalMins / score;
+                    double averageSeconds = ((totalMins * 60) + totalSeconds) / score;
 
-                    if (totalSeconds / score < 10) {
-                        averageTime = String.valueOf(Math.round((totalMins / score))
-                                + ":0" + String.valueOf(Math.round(totalSeconds / score))
-                                + ":" + String.valueOf(Math.round(totalMillis / score)));
+                    String averageTime = String.valueOf(averageMins);
+                    if (averageSeconds < 10) {
+                        averageTime += ":0" + String.valueOf(averageSeconds);
                     } else {
-                        averageTime = String.valueOf(Math.round((totalMins / score))
-                                + ":" + String.valueOf(Math.round(totalSeconds / score))
-                                + ":" + String.valueOf(Math.round(totalMillis / score)));
+                        averageTime += ":" + String.valueOf(averageSeconds);
                     }
+
                     timeLabels[i].setText(averageTime);
                 }
                 scoreLabels[i].setText(String.valueOf(score));

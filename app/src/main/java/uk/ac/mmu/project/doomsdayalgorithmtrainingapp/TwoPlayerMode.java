@@ -61,7 +61,7 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         updateScreen();
     }
 
-    public void updateScreen() {
+    private void updateScreen() {
         TextView p1date = findViewById(R.id.p1dateLabel);
         TextView p2date = findViewById(R.id.p2dateLabel);
 
@@ -110,7 +110,7 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
     }
 
     @SuppressLint("DefaultLocale")
-    public void processAnswer(int player, int answer) {
+    private void processAnswer(int player, int answer) {
         acceptAnswer = false;
         dateCount++;
         int correctDate = date.getDayOfWeek();

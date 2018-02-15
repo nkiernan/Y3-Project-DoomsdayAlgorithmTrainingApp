@@ -1,8 +1,8 @@
 package uk.ac.mmu.project.doomsdayalgorithmtrainingapp;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -28,22 +28,22 @@ public class QuizMode extends AppCompatActivity {
         buttons.add((RadioButton) findViewById(R.id.answer2));
         buttons.add((RadioButton) findViewById(R.id.answer3));
         buttons.add((RadioButton) findViewById(R.id.answer4));
-        ImageView answer = findViewById(R.id.answerButton);
+        ImageView submitButton = findViewById(R.id.submitButton);
 
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isChecked()) {
-                answer.setVisibility(View.VISIBLE);
+                submitButton.setVisibility(View.VISIBLE);
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    public void updateScreen() {
+    private void updateScreen() {
         TextView questionNumber = findViewById(R.id.questionNumberLabel);
         TextView scoreNumber = findViewById(R.id.runningScoreLabel);
         TextView displayedQuestion = findViewById(R.id.generatedQuestionLabel);
-        ImageView answersButton = findViewById(R.id.answerButton);
-        answersButton.setVisibility(View.INVISIBLE);
+        ImageView submitButton = findViewById(R.id.submitButton);
+        submitButton.setVisibility(View.INVISIBLE);
 
         ArrayList<RadioButton> buttons = new ArrayList<>();
         buttons.add((RadioButton) findViewById(R.id.answer1));

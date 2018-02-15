@@ -7,7 +7,6 @@
     <string name="two_player_mode_item">Two-Player Mode</string>
     <string name="scoreboards_item">Scoreboards</string>
     <string name="settings_item">Settings</string>
-    <string name="quit_item">Quit</string>
     <string name="select_mode_label">Select A Mode:</string>
     <string name="tutorial_mode_item">Tutorial Mode</string>
     <string name="quiz_mode_item">Quiz Mode</string>
@@ -73,7 +72,7 @@
     <string name="answer_5b">12</string>
     <string name="answer_5c">27</string>
     <string name="answer_5d">29</string>
-    <string name="answer_button">Answer Button</string>
+    <string name="submit_button">Submit Button</string>
     <string name="divider">Screen Divider</string>
     <string name="practice_mode_info">Information:\n\nWelcome!\n\nUse this mode to learn about and practice calculating the Doomsday algorithm!</string>
     <string name="standard_mode_info">Information:\n\nSolve 5 dates as quickly and correctly as you can!\n\nTry your best to beat your previous attempts!</string>
@@ -85,7 +84,6 @@
     <string name="player_two">P2: </string>
     <string name="timer">Time: </string>
     <string name="default_standard_time">0:00</string>
-    <string name="default_challenge_time">0:00:000</string>
     <string name="refresh_button">Refresh Button</string>
     <string name="leap_year">(Leap Year)</string>
     <string name="common_year">(Common Year)</string>
@@ -105,15 +103,10 @@
     <string name="cancel_button">Cancel Button</string>
     <string name="doomsday_button">Doomsday Button</string>
     <string name="anchor_button">Anchor Button</string>
-    <string name="easy">Easy</string>
-    <string name="normal">Normal</string>
-    <string name="hard">Hard</string>
-    <string name="challenge">Challenge</string>
     <string name="number_column">#</string>
     <string name="score_column">Score</string>
     <string name="time_overall">Overall Time</string>
     <string name="time_average">Average Time</string>
-    <string name="time_column">Time</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>

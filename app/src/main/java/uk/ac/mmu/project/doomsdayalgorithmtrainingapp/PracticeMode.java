@@ -45,7 +45,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         updateScreen();
     }
 
-    public void updateScreen() {
+    private void updateScreen() {
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
@@ -65,7 +65,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void toggleAlgorithmDisplay(String display) {
+    private void toggleAlgorithmDisplay(String display) {
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
         ImageView closeButton = findViewById(R.id.closeButton);
@@ -94,7 +94,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("DefaultLocale")
-    public void processAnswer(int i) {
+    private void processAnswer(int i) {
         acceptAnswer = false;
         final Snackbar answerMessage;
         int correctDate = date.getDayOfWeek();

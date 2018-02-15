@@ -17,14 +17,13 @@ import io.realm.Realm;
 import utils.DateGenerator;
 
 public class ChallengeMode extends AppCompatActivity implements View.OnClickListener {
-
     private Realm realm;
     private DateGenerator date;
     private String dateFormat;
     private int currentScore = 0;
     private boolean acceptAnswer = true;
     private long startTime = 0L;
-    private Handler timer = new Handler();
+    private final Handler timer = new Handler();
     private long currentMs = 0L;
     private long timeSwap = 0L;
     private TextView runningTimeLabel;
@@ -60,7 +59,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         updateScreen(true);
     }
 
-    public void updateScreen(boolean correctAnswer) {
+    private void updateScreen(boolean correctAnswer) {
         TextView givenDate = findViewById(R.id.dateLabel);
 
         if (correctAnswer) {
@@ -92,7 +91,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
     }
 
     @SuppressLint("DefaultLocale")
-    public void processAnswer(int i) {
+    private void processAnswer(int i) {
         int correctDate = date.getDayOfWeek();
 
         if (correctDate == i) {
@@ -111,7 +110,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
             acceptAnswer = false;
             final Snackbar answerMessage;
 
-            answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode), date.getWeekday(correctDate) + " was the correct answer!", Snackbar.LENGTH_INDEFINITE);
+            answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode),date.getWeekday(correctDate) + " was the correct answer!", Snackbar.LENGTH_INDEFINITE);
             answerMessage.setAction("Next", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -154,17 +153,17 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void startTimer() {
+    private void startTimer() {
         startTime = SystemClock.uptimeMillis();
         timer.postDelayed(updateTimer, 0);
     }
 
-    public void pauseTimer() {
+    private void pauseTimer() {
         timeSwap += currentMs;
         timer.removeCallbacks(updateTimer);
     }
 
-    private Runnable updateTimer = new Runnable() {
+    private final Runnable updateTimer = new Runnable() {
 
         @SuppressLint({"SetTextI18n", "DefaultLocale"})
         @Override
@@ -175,9 +174,8 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
             int seconds = (int) (endTime / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            int milliseconds = (int) (endTime % 1000);
 
-            runningTimeLabel.setText(minutes + ":" + String.format("%02d", seconds) + ":" + String.format("%03d", milliseconds));
+            runningTimeLabel.setText(minutes + ":" + String.format("%02d", seconds));
             timer.postDelayed(this, 0);
         }
     };

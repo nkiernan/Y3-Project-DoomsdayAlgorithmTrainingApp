@@ -26,7 +26,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
     private int dateCount = 0;
     private boolean acceptAnswer = true;
     private long startTime = 0L;
-    private Handler timer = new Handler();
+    private final Handler timer = new Handler();
     private long currentMs = 0L;
     private long timeSwap = 0L;
     private TextView runningTimeLabel;
@@ -79,7 +79,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         updateScreen();
     }
 
-    public void updateScreen() {
+    private void updateScreen() {
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
@@ -130,7 +130,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         updateScreen();
     }
 
-    public void toggleAlgorithmDisplay(String display) {
+    private void toggleAlgorithmDisplay(String display) {
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
         ImageView closeButton = findViewById(R.id.closeButton);
@@ -159,7 +159,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("DefaultLocale")
-    public void processAnswer(int i) {
+    private void processAnswer(int i) {
         pauseTimer();
         acceptAnswer = false;
         dateCount++;
@@ -260,17 +260,17 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void startTimer() {
+    private void startTimer() {
         startTime = SystemClock.uptimeMillis();
         timer.postDelayed(updateTimer, 0);
     }
 
-    public void pauseTimer() {
+    private void pauseTimer() {
         timeSwap += currentMs;
         timer.removeCallbacks(updateTimer);
     }
 
-    private Runnable updateTimer = new Runnable() {
+    private final Runnable updateTimer = new Runnable() {
 
         @SuppressLint({"SetTextI18n", "DefaultLocale"})
         @Override

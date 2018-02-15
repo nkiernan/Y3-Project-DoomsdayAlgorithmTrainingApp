@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.MainActivity">
 
     <ImageView
-        android:id="@+id/appLogo"
+        android:id="@+id/doomsdayLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -23,7 +24,6 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/practiceModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -42,7 +42,6 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <TextView
-        android:id="@+id/standardModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -60,7 +59,6 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/challengeModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -78,7 +76,6 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <TextView
-        android:id="@+id/twoPlayerModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -96,7 +93,6 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/scoreboardsItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -114,7 +110,6 @@
         app:layout_constraintVertical_bias="0.8" />
 
     <TextView
-        android:id="@+id/settingsItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

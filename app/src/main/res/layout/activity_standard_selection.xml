@@ -8,7 +8,6 @@
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.StandardSelection">
 
     <TextView
-        android:id="@+id/selectDifficultyItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -26,7 +25,6 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/easyModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,7 +42,6 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <TextView
-        android:id="@+id/normalModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -62,7 +59,6 @@
         app:layout_constraintVertical_bias="0.55" />
 
     <TextView
-        android:id="@+id/hardModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -80,7 +76,6 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/informationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

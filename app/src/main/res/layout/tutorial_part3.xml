@@ -1,14 +1,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.TutorialMode">
 
     <TextView
-        android:id="@+id/tutorialLabel3a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -27,7 +25,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/doomsdayExample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -43,7 +40,6 @@
         app:srcCompat="@drawable/doomsday_example" />
 
     <TextView
-        android:id="@+id/tutorialLabel3b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -62,7 +58,6 @@
         app:layout_constraintVertical_bias="0.85" />
 
     <TextView
-        android:id="@+id/swipeLabel"
         android:layout_width="0dp"
         android:layout_height="20sp"
         android:layout_marginBottom="8dp"

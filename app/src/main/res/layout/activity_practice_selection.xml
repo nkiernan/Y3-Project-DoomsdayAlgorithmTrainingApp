@@ -8,7 +8,6 @@
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.PracticeSelection">
 
     <TextView
-        android:id="@+id/informationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -28,7 +27,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/selectModeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -46,7 +44,6 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/tutorialModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -64,7 +61,6 @@
         app:layout_constraintVertical_bias="0.39999998" />
 
     <TextView
-        android:id="@+id/quizModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -82,7 +78,6 @@
         app:layout_constraintVertical_bias="0.55" />
 
     <TextView
-        android:id="@+id/practiceModeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

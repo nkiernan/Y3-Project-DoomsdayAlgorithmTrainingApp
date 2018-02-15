@@ -8,7 +8,6 @@
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.QuizMode">
 
     <TextView
-        android:id="@+id/scoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -168,14 +167,14 @@
     </RadioGroup>
 
     <ImageView
-        android:id="@+id/answerButton"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/answer_button"
+        android:contentDescription="@string/submit_button"
         android:onClick="answerButtonOnClick"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -184,6 +183,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
-        app:srcCompat="@drawable/answer" />
+        app:srcCompat="@drawable/submit" />
 
 </android.support.constraint.ConstraintLayout>

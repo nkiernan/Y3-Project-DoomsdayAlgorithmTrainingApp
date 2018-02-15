@@ -7,11 +7,11 @@ public class DateGenerator {
     private int month;
     private int year;
 
-    private Random rand = new Random();
-    private static int monthDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    private static int centuryDays[] = {5, 3, 2, 0};
-    private static int doomsdays[] = {3, 28, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12};
-    private static String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private final Random rand = new Random();
+    private static final int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final int[] centuryDays = {5, 3, 2, 0};
+    private static final int[] doomsdays = {3, 28, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12};
+    private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     public DateGenerator(String difficulty) {
         switch (difficulty) {

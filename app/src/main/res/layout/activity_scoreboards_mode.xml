@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
     tools:context="uk.ac.mmu.project.doomsdayalgorithmtrainingapp.ScoreboardsMode">
 
     <TextView
@@ -26,7 +27,6 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <TextView
-        android:id="@+id/numberColumn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,7 +44,6 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
-        android:id="@+id/scoreColumn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -82,7 +81,6 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
-        android:id="@+id/item1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -137,7 +135,6 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/item2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -191,7 +188,6 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/item3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -245,7 +241,6 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <TextView
-        android:id="@+id/item4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -299,7 +294,6 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <TextView
-        android:id="@+id/item5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -390,7 +384,6 @@
         app:srcCompat="@drawable/right_arrow" />
 
     <ImageView
-        android:id="@+id/deleteModeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -408,7 +401,6 @@
         app:srcCompat="@drawable/delete_mode" />
 
     <ImageView
-        android:id="@+id/deleteAllButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
