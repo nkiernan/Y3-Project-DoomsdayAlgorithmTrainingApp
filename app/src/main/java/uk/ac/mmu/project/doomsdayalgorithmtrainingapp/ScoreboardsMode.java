@@ -180,6 +180,7 @@ public class ScoreboardsMode extends AppCompatActivity {
                     double totalSeconds = Integer.parseInt(time.split(":")[1]);
                     int averageMins = totalMins / score;
                     double averageSeconds = ((totalMins * 60) + totalSeconds) / score;
+                    averageSeconds = averageSeconds - (averageMins * 60);
 
                     String averageTime = String.valueOf(averageMins);
                     if (averageSeconds < 10) {
@@ -188,6 +189,7 @@ public class ScoreboardsMode extends AppCompatActivity {
                         averageTime += ":" + String.valueOf(averageSeconds);
                     }
 
+                    averageTime = averageTime.substring(0, 6);
                     timeLabels[i].setText(averageTime);
                 }
                 scoreLabels[i].setText(String.valueOf(score));
