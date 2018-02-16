@@ -91,7 +91,11 @@ public class ScoreboardsMode extends AppCompatActivity {
         scoreLabels[4] = findViewById(R.id.score5);
 
         for (TextView timeLabel : timeLabels) {
+            if (currentMode != 4) {
                 timeLabel.setText(R.string.default_standard_time);
+            } else if (currentMode == 4) {
+                timeLabel.setText(R.string.default_average_time);
+            }
         }
 
         for (TextView scoreLabel : scoreLabels) {

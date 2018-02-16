@@ -110,7 +110,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
             acceptAnswer = false;
             final Snackbar answerMessage;
 
-            answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode),date.getWeekday(correctDate) + " was the correct answer!", Snackbar.LENGTH_INDEFINITE);
+            answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode), date.getWeekday(correctDate) + " was the correct answer!", Snackbar.LENGTH_INDEFINITE);
             answerMessage.setAction("Next", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
