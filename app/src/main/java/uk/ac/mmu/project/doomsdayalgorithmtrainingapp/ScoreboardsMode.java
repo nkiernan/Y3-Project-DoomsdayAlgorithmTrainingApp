@@ -76,19 +76,8 @@ public class ScoreboardsMode extends AppCompatActivity {
     }
 
     private void presetInfo() {
-        TextView[] timeLabels = new TextView[5];
-        timeLabels[0] = findViewById(R.id.time1);
-        timeLabels[1] = findViewById(R.id.time2);
-        timeLabels[2] = findViewById(R.id.time3);
-        timeLabels[3] = findViewById(R.id.time4);
-        timeLabels[4] = findViewById(R.id.time5);
-
-        TextView[] scoreLabels = new TextView[5];
-        scoreLabels[0] = findViewById(R.id.score1);
-        scoreLabels[1] = findViewById(R.id.score2);
-        scoreLabels[2] = findViewById(R.id.score3);
-        scoreLabels[3] = findViewById(R.id.score4);
-        scoreLabels[4] = findViewById(R.id.score5);
+        TextView[] timeLabels = getTimeLabels();
+        TextView[] scoreLabels = getScoreLabels();
 
         for (TextView timeLabel : timeLabels) {
             if (currentMode != 4) {
@@ -149,19 +138,8 @@ public class ScoreboardsMode extends AppCompatActivity {
     }
 
     private void getScores() {
-        TextView[] timeLabels = new TextView[5];
-        timeLabels[0] = findViewById(R.id.time1);
-        timeLabels[1] = findViewById(R.id.time2);
-        timeLabels[2] = findViewById(R.id.time3);
-        timeLabels[3] = findViewById(R.id.time4);
-        timeLabels[4] = findViewById(R.id.time5);
-
-        TextView[] scoreLabels = new TextView[5];
-        scoreLabels[0] = findViewById(R.id.score1);
-        scoreLabels[1] = findViewById(R.id.score2);
-        scoreLabels[2] = findViewById(R.id.score3);
-        scoreLabels[3] = findViewById(R.id.score4);
-        scoreLabels[4] = findViewById(R.id.score5);
+        TextView[] timeLabels = getTimeLabels();
+        TextView[] scoreLabels = getScoreLabels();
 
         RealmResults<Scoreboard> scores = realm.where(Scoreboard.class)
                 .equalTo("mode", findMode())
@@ -210,5 +188,25 @@ public class ScoreboardsMode extends AppCompatActivity {
             default:
                 return "";
         }
+    }
+
+    private TextView[] getTimeLabels() {
+        TextView[] timeLabels = new TextView[5];
+        timeLabels[0] = findViewById(R.id.time1);
+        timeLabels[1] = findViewById(R.id.time2);
+        timeLabels[2] = findViewById(R.id.time3);
+        timeLabels[3] = findViewById(R.id.time4);
+        timeLabels[4] = findViewById(R.id.time5);
+        return timeLabels;
+    }
+
+    private TextView[] getScoreLabels() {
+        TextView[] scoreLabels = new TextView[5];
+        scoreLabels[0] = findViewById(R.id.score1);
+        scoreLabels[1] = findViewById(R.id.score2);
+        scoreLabels[2] = findViewById(R.id.score3);
+        scoreLabels[3] = findViewById(R.id.score4);
+        scoreLabels[4] = findViewById(R.id.score5);
+        return scoreLabels;
     }
 }
