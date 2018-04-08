@@ -33,6 +33,7 @@ public class TutorialMode extends AppCompatActivity {
             super(fm);
         }
 
+        // Select which part of tutorial to display
         @Override
         public Fragment getItem(int position) {
             switch (position) {

@@ -36,17 +36,22 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standard_mode);
 
+        // Set up Realm Database
         Realm.init(this);
         realm = Realm.getDefaultInstance();
+
+        // Get selected difficulty from previous screen
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         difficulty = (String) extras.get("modeSelected");
+
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView anchorDisplay = findViewById(R.id.anchorDisplay);
         ImageView doomsdayButton = findViewById(R.id.doomsdayButton);
-        runningTimeLabel = findViewById(R.id.runningTimeLabel);
+        runningTimeLabel = findViewById(R.id.runningTimeLabel); // Get text label to display time
 
+        // Show hints depending on selected difficulty
         assert difficulty != null;
         if ("Normal".equals(difficulty)) {
             showAlgorithmButton.setVisibility(View.INVISIBLE);
@@ -57,6 +62,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
             doomsdayButton.setVisibility(View.INVISIBLE);
         }
 
+        // Get weekday buttons and set up click listeners
         ImageView mondayButton = findViewById(R.id.mondayButton);
         mondayButton.setOnClickListener(this);
         ImageView tuesdayButton = findViewById(R.id.tuesdayButton);
@@ -72,6 +78,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        // Get user's preferred date format for date display
         SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
 
@@ -79,17 +86,20 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         updateScreen();
     }
 
+    // Update screen after each answer given
     private void updateScreen() {
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
+        // Continue until five dates have been generated
         if (dateCount < 5) {
             if ("Easy".equals(difficulty)) {
-                date = new DateGenerator("easy");
+                date = new DateGenerator("easy"); // Dates generated are made easier
             } else {
-                date = new DateGenerator("normal");
+                date = new DateGenerator("normal"); // Dates generated are not made easier
             }
-            givenDate.setText(date.toFormat(dateFormat));
+            givenDate.setText(date.toFormat(dateFormat)); // Display date in user's preferred format
+            // Determine if leap year or not and provide as hint
             if (date.getYear() % 4 == 0) {
                 leapYearLabel.setText(R.string.leap_year);
             } else if (date.getYear() % 4 != 0) {
@@ -98,7 +108,9 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
             acceptAnswer = true;
             startTimer();
         } else {
+            // End round after five generated dates
             if (currentScore != 0) {
+                // If user has any correct answers, add score and time of attempt to Realm Database
                 TextView time = findViewById(R.id.runningTimeLabel);
                 realm.beginTransaction();
                 realm.copyToRealm(new Scoreboard(difficulty, currentScore, time.getText().toString()));
@@ -109,27 +121,34 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
                 leapYearLabel.setText("");
             }
             acceptAnswer = false;
+
+            // Display button to give user option of restarting the mode
             ImageView refreshButton = findViewById(R.id.refreshButton);
             refreshButton.setVisibility(View.VISIBLE);
         }
     }
 
+    // When refresh mode button is clicked
     @SuppressLint("DefaultLocale")
     public void refreshMode(View v) {
+        // Hide refresh mode button
         ImageView refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setVisibility(View.INVISIBLE);
 
+        // Reset score and timer values
         currentScore = 0;
         dateCount = 0;
         startTime = 0L;
         currentMs = 0L;
         timeSwap = 0L;
 
+        // Begin mode again with default values
         TextView score = findViewById(R.id.runningScoreLabel);
         score.setText(String.format("%d/5", currentScore));
         updateScreen();
     }
 
+    // Methods to show or hide algorithm hint
     private void toggleAlgorithmDisplay(String display) {
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
@@ -158,14 +177,16 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Deals with user's answer for all seven weekday choices
     @SuppressLint("DefaultLocale")
     private void processAnswer(int i) {
         pauseTimer();
         acceptAnswer = false;
         dateCount++;
         final Snackbar answerMessage;
-        int correctDate = date.getDayOfWeek();
+        int correctDate = date.getDayOfWeek(); // Get correct day of week to compare with user's answer
 
+        // Setup and display feedback to user reflecting correctness of answer
         if (correctDate == i) {
             currentScore++;
             TextView score = findViewById(R.id.runningScoreLabel);
@@ -192,6 +213,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Pass value of selected weekday to processAnswer method to verify correctness
     @Override
     public void onClick(View v) {
         if (acceptAnswer) {
@@ -223,6 +245,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Determine anchor day and show appropriate hint to user
     public void showAnchorDay(View v) {
         if (acceptAnswer) {
             String anchorDay = null;
@@ -240,6 +263,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Determine Doomsday and show appropriate hint to user
     public void showDoomsday(View v) {
         if (acceptAnswer) {
             String doomsdayHint = null;
@@ -260,6 +284,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Methods to start and pause timer
     private void startTimer() {
         startTime = SystemClock.uptimeMillis();
         timer.postDelayed(updateTimer, 0);
@@ -270,6 +295,7 @@ public class StandardMode extends AppCompatActivity implements View.OnClickListe
         timer.removeCallbacks(updateTimer);
     }
 
+    // Counts each second elapsed and updates timer label to reflect it
     private final Runnable updateTimer = new Runnable() {
 
         @SuppressLint({"SetTextI18n", "DefaultLocale"})

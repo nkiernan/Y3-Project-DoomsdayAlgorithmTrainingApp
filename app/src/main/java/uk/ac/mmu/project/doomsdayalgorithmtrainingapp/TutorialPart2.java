@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 public class TutorialPart2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Display tutorial information from part 2's layout
         return inflater.inflate(R.layout.tutorial_part2, container, false);
     }
 }

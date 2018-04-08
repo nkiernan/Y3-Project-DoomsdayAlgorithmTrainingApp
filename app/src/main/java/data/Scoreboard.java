@@ -7,44 +7,21 @@ public class Scoreboard extends RealmObject {
     private int score;
     private String time;
 
-    public Scoreboard(){}
+    public Scoreboard(){} // Empty constructor
 
+    // Constructor used when saving scores
     public Scoreboard(String mode, int score, String time) {
         this.mode = mode;
         this.score = score;
         this.time = time;
     }
 
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    // Get parameters required by ScoreboardsMode
     public String getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    @Override
-    public String toString() {
-        return "Scoreboard{" +
-                "mode='" + mode + '\'' +
-                ", score=" + score +
-                ", time='" + time + '\'' +
-                '}';
+    public int getScore() {
+        return score;
     }
 }

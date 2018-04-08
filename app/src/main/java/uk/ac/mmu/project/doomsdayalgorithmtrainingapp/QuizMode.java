@@ -23,13 +23,15 @@ public class QuizMode extends AppCompatActivity {
     }
 
     public void selectedAnswer(View v) {
+        // Get reference to selectable answers
         ArrayList<RadioButton> buttons = new ArrayList<>();
         buttons.add((RadioButton) findViewById(R.id.answer1));
         buttons.add((RadioButton) findViewById(R.id.answer2));
         buttons.add((RadioButton) findViewById(R.id.answer3));
         buttons.add((RadioButton) findViewById(R.id.answer4));
-        ImageView submitButton = findViewById(R.id.submitButton);
 
+        // Display submit button when an answer is selected
+        ImageView submitButton = findViewById(R.id.submitButton);
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isChecked()) {
                 submitButton.setVisibility(View.VISIBLE);
@@ -37,6 +39,7 @@ public class QuizMode extends AppCompatActivity {
         }
     }
 
+    // Change question and answers displayed when answer is submitted
     @SuppressLint("SetTextI18n")
     private void updateScreen() {
         TextView questionNumber = findViewById(R.id.questionNumberLabel);
@@ -58,6 +61,7 @@ public class QuizMode extends AppCompatActivity {
         scoreNumber.setText(currentScore + "/5");
 
         switch (currentQuestion) {
+            // Display question and possible answers according to which question user is up to
             case 2:
                 displayedQuestion.setText(R.string.question_2);
                 buttons.get(0).setText(R.string.answer_2a);
@@ -86,12 +90,14 @@ public class QuizMode extends AppCompatActivity {
                 buttons.get(2).setText(R.string.answer_5c);
                 buttons.get(3).setText(R.string.answer_5d);
                 break;
-            case 6:
+            case 6: // End of questions
+                // Hide question and possible answers
                 answers.setVisibility(View.INVISIBLE);
                 TextView questionLabel = findViewById(R.id.questionLabel);
                 questionLabel.setVisibility(View.INVISIBLE);
                 questionNumber.setVisibility(View.INVISIBLE);
 
+                // Display feedback to user reflecting their score
                 switch (currentScore) {
                     case 0:case 1:case 2:
                         displayedQuestion.setText("You need more practice!");
@@ -111,6 +117,7 @@ public class QuizMode extends AppCompatActivity {
         }
     }
 
+    // Change question displayed and update score if correct answer is given
     public void answerButtonOnClick(View v) {
         ArrayList<RadioButton> buttons = new ArrayList<>();
         buttons.add((RadioButton) findViewById(R.id.answer1));

@@ -33,10 +33,13 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge_mode);
 
+        // Set up Realm Database
         Realm.init(this);
         realm = Realm.getDefaultInstance();
-        runningTimeLabel = findViewById(R.id.runningTimeLabel);
 
+        runningTimeLabel = findViewById(R.id.runningTimeLabel); // Get text label to display time
+
+        // Get weekday buttons and set up click listeners
         ImageView mondayButton = findViewById(R.id.mondayButton);
         mondayButton.setOnClickListener(this);
         ImageView tuesdayButton = findViewById(R.id.tuesdayButton);
@@ -52,6 +55,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        // Get user's preferred date format for date display
         SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
 
@@ -59,57 +63,70 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         updateScreen(true);
     }
 
+    // Update screen after each answer given
     private void updateScreen(boolean correctAnswer) {
         TextView givenDate = findViewById(R.id.dateLabel);
 
         if (correctAnswer) {
-            date = new DateGenerator("normal");
-            givenDate.setText(date.toFormat(dateFormat));
+            // Continues with each correct answer
+            date = new DateGenerator("normal"); // Dates generated are not made easier
+            givenDate.setText(date.toFormat(dateFormat)); // Display date in user's preferred format
             acceptAnswer = true;
         } else {
+            // End round if answer is incorrect
             givenDate.setText(R.string.end_of_round);
             acceptAnswer = false;
+
+            // Display button to give user option of restarting the mode
             ImageView refreshButton = findViewById(R.id.refreshButton);
             refreshButton.setVisibility(View.VISIBLE);
         }
     }
 
+    // When refresh mode button is clicked
     @SuppressLint("DefaultLocale")
     public void refreshMode(View v) {
+        // Hide refresh mode button
         ImageView refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setVisibility(View.INVISIBLE);
 
+        // Reset score and timer values
         currentScore = 0;
         startTime = 0L;
         currentMs = 0L;
         timeSwap = 0L;
 
+        // Begin mode again with default values
         TextView score = findViewById(R.id.runningScoreLabel);
         score.setText(String.valueOf(currentScore));
         startTimer();
         updateScreen(true);
     }
 
+    // Deals with user's answer for all seven weekday choices
     @SuppressLint("DefaultLocale")
     private void processAnswer(int i) {
-        int correctDate = date.getDayOfWeek();
+        int correctDate = date.getDayOfWeek(); // Get correct day of week to compare with user's answer
 
         if (correctDate == i) {
+            // Increase and update user score if correct answer given, mode continues
             currentScore++;
             TextView score = findViewById(R.id.runningScoreLabel);
             score.setText(String.valueOf(currentScore));
             updateScreen(true);
         } else {
-            pauseTimer();
+            pauseTimer(); // Stop timer if incorrect answer given
             if (currentScore != 0) {
+                // If user has any correct answers, add score and time of attempt to Realm Database
                 TextView time = findViewById(R.id.runningTimeLabel);
                 realm.beginTransaction();
                 realm.copyToRealm(new Scoreboard("Challenge", currentScore, time.getText().toString()));
                 realm.commitTransaction();
             }
-            acceptAnswer = false;
-            final Snackbar answerMessage;
+            acceptAnswer = false; // Disable answer buttons
 
+            // Setup and display correct answer in message to user
+            final Snackbar answerMessage;
             answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode), date.getWeekday(correctDate) + " was the correct answer!", Snackbar.LENGTH_INDEFINITE);
             answerMessage.setAction("Next", new View.OnClickListener() {
                 @Override
@@ -122,6 +139,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // Pass value of selected weekday to processAnswer method to verify correctness
     @Override
     public void onClick(View v) {
         if (acceptAnswer) {
@@ -153,6 +171,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // Methods to start and pause timer
     private void startTimer() {
         startTime = SystemClock.uptimeMillis();
         timer.postDelayed(updateTimer, 0);
@@ -163,6 +182,7 @@ public class ChallengeMode extends AppCompatActivity implements View.OnClickList
         timer.removeCallbacks(updateTimer);
     }
 
+    // Counts each second elapsed and updates timer label to reflect it
     private final Runnable updateTimer = new Runnable() {
 
         @SuppressLint({"SetTextI18n", "DefaultLocale"})

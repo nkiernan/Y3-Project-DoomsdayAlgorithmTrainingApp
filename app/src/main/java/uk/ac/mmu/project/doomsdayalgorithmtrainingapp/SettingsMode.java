@@ -19,9 +19,11 @@ public class SettingsMode extends AppCompatActivity {
         final RadioGroup localeButtons = findViewById(R.id.localeButtons);
         final RadioGroup formatButtons = findViewById(R.id.formatButtons);
         TextView dateLabel = findViewById(R.id.dateLabel);
+        // Find existing date format preference
         SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         String currentFormat = chosenFormat.getString("DateFormat", "DateFormat");
 
+        // Display existing date format preference
         switch (currentFormat) {
                 case "uk_alpha":
                     localeButtons.check(R.id.ukButton);
@@ -50,6 +52,7 @@ public class SettingsMode extends AppCompatActivity {
                     break;
         }
 
+        // Listeners to keep track of selected format values
         localeButtons.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -65,6 +68,7 @@ public class SettingsMode extends AppCompatActivity {
         });
     }
 
+    // Change date format reflecting selected radio buttons
     private void changeFormat(int localeButton, int formatButton) {
         TextView dateLabel = findViewById(R.id.dateLabel);
         if (formatButton == R.id.alphabeticButton) {
@@ -86,6 +90,7 @@ public class SettingsMode extends AppCompatActivity {
         }
     }
 
+    // Use shared preferences to store user's date format choice
     public void saveDateFormat(View v) {
         SharedPreferences preferences = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

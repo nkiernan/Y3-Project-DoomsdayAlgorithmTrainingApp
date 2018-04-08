@@ -25,6 +25,7 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_player_mode);
 
+        // Get player 1's weekday buttons and set up click listeners
         ImageView p1mondayButton = findViewById(R.id.p1mondayButton);
         p1mondayButton.setOnClickListener(this);
         ImageView p1tuesdayButton = findViewById(R.id.p1tuesdayButton);
@@ -40,6 +41,7 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         ImageView p1sundayButton = findViewById(R.id.p1sundayButton);
         p1sundayButton.setOnClickListener(this);
 
+        // Get player 2's weekday buttons and set up click listeners
         ImageView p2mondayButton = findViewById(R.id.p2mondayButton);
         p2mondayButton.setOnClickListener(this);
         ImageView p2tuesdayButton = findViewById(R.id.p2tuesdayButton);
@@ -55,47 +57,61 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         ImageView p2sundayButton = findViewById(R.id.p2sundayButton);
         p2sundayButton.setOnClickListener(this);
 
+        // Get user's preferred date format for date display
         SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
 
         updateScreen();
     }
 
+    // Update screen after each answer given
     private void updateScreen() {
         TextView p1date = findViewById(R.id.p1dateLabel);
         TextView p2date = findViewById(R.id.p2dateLabel);
 
         if (dateCount < 5) {
-            date = new DateGenerator("normal");
+            date = new DateGenerator("normal");  // Dates generated are made easier
+            // Display dates in user's preferred format
             p1date.setText(date.toFormat(dateFormat));
             p2date.setText(date.toFormat(dateFormat));
             acceptAnswer = true;
 
         } else {
+            // Display outcome to both players
             if (p1currentScore > p2currentScore) {
+                // If player 1 wins
                 p1date.setText(R.string.two_player_win);
                 p2date.setText(R.string.two_player_lose);
             } else if (p1currentScore < p2currentScore) {
+                // If player 2 wins
                 p1date.setText(R.string.two_player_lose);
                 p2date.setText(R.string.two_player_win);
             } else if (p1currentScore == p2currentScore) {
+                // If it is a draw
                 p1date.setText(R.string.two_player_draw);
                 p2date.setText(R.string.two_player_draw);
             }
             acceptAnswer = false;
+
+            // Display button to give users option of restarting the mode
             ImageView refreshButton = findViewById(R.id.refreshButton);
             refreshButton.setVisibility(View.VISIBLE);
         }
     }
 
+    // When refresh mode button is clicked
     @SuppressLint("DefaultLocale")
     public void refreshMode(View v) {
+        // Hide refresh mode button
         ImageView refreshButton = findViewById(R.id.refreshButton);
         refreshButton.setVisibility(View.INVISIBLE);
+
+        // Reset scores and date count
         p1currentScore = 0;
         p2currentScore = 0;
         dateCount = 0;
 
+        // Begin mode again with default values
         TextView p1score = findViewById(R.id.p1scoreLabel);
         TextView p2opponentScore = findViewById(R.id.p2opponentScoreLabel);
         p1score.setText(String.format("%d/5", p1currentScore));
@@ -109,12 +125,14 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         updateScreen();
     }
 
+    // Deals with user's answer for all seven weekday choices
     @SuppressLint("DefaultLocale")
     private void processAnswer(int player, int answer) {
         acceptAnswer = false;
         dateCount++;
-        int correctDate = date.getDayOfWeek();
+        int correctDate = date.getDayOfWeek(); // Get correct day of week to compare with user's answer
 
+        // Process answer according to which player answered
         if (correctDate == answer) {
             if (player == 1) {
                 p1currentScore++;
@@ -135,6 +153,7 @@ public class TwoPlayerMode extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // Pass value of selected weekday to processAnswer method to verify correctness
     @Override
     public void onClick(View v) {
         if (acceptAnswer) {

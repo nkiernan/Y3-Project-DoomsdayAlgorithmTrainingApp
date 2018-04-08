@@ -24,6 +24,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_mode);
 
+        // Get weekday buttons and set up click listeners
         ImageView mondayButton = findViewById(R.id.mondayButton);
         mondayButton.setOnClickListener(this);
         ImageView tuesdayButton = findViewById(R.id.tuesdayButton);
@@ -39,18 +40,21 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         ImageView sundayButton = findViewById(R.id.sundayButton);
         sundayButton.setOnClickListener(this);
 
+        // Get user's preferred date format for date display
         SharedPreferences chosenFormat = getSharedPreferences("DateFormat", Context.MODE_PRIVATE);
         dateFormat = chosenFormat.getString("DateFormat", "DateFormat");
 
         updateScreen();
     }
 
+    // Update screen after each answer given
     private void updateScreen() {
         TextView givenDate = findViewById(R.id.dateLabel);
         TextView leapYearLabel = findViewById(R.id.leapYearLabel);
 
-        date = new DateGenerator("easy");
-        givenDate.setText(date.toFormat(dateFormat));
+        date = new DateGenerator("easy"); // Dates generated are made easier
+        givenDate.setText(date.toFormat(dateFormat)); // Display date in user's preferred format
+        // Determine if leap year or not and provide as hint
         if (date.getYear() % 4 == 0) {
             leapYearLabel.setText(R.string.leap_year);
         } else if (date.getYear() % 4 != 0) {
@@ -59,12 +63,14 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         acceptAnswer = true;
     }
 
+    // Allows user to change date without giving an answer
     public void refreshDate(View v) {
         if (acceptAnswer) {
             updateScreen();
         }
     }
 
+    // Methods to show or hide algorithm hint
     private void toggleAlgorithmDisplay(String display) {
         ImageView showAlgorithmButton = findViewById(R.id.showAlgorithmButton);
         ImageView doomsdayAlgorithm = findViewById(R.id.doomsdayAlgorithm);
@@ -93,12 +99,14 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Deals with user's answer for all seven weekday choices
     @SuppressLint("DefaultLocale")
     private void processAnswer(int i) {
         acceptAnswer = false;
         final Snackbar answerMessage;
-        int correctDate = date.getDayOfWeek();
+        int correctDate = date.getDayOfWeek(); // Get correct day of week to compare with user's answer
 
+        // Setup and display feedback to user reflecting correctness of answer
         if (correctDate == i) {
             answerMessage = Snackbar.make(findViewById(R.id.activity_standard_mode), "You are correct!", Snackbar.LENGTH_INDEFINITE);
             answerMessage.setAction("Next", new View.OnClickListener() {
@@ -122,6 +130,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Pass value of selected weekday to processAnswer method to verify correctness
     @Override
     public void onClick(View v) {
         if (acceptAnswer) {
@@ -153,6 +162,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Determine anchor day and show appropriate hint to user
     public void showAnchorDay(View v) {
         if (acceptAnswer) {
             String anchorDay = null;
@@ -170,6 +180,7 @@ public class PracticeMode extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // Determine Doomsday and show appropriate hint to user
     public void showDoomsday(View v) {
         if (acceptAnswer) {
             String doomsdayHint = null;

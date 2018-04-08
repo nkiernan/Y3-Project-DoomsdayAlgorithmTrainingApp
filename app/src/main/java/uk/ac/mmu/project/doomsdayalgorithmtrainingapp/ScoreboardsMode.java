@@ -22,19 +22,23 @@ public class ScoreboardsMode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboards_mode);
 
+        // Set up Realm Database and look for existing scores
         Realm.init(this);
         realm = Realm.getDefaultInstance();
         getScores();
     }
 
     private void scrollScoreboard(int currentMode) {
+        // Display default score info before looking for scores in case they don't exist
         presetInfo();
         getScores();
+
         ImageView leftArrow = findViewById(R.id.leftArrow);
         ImageView rightArrow = findViewById(R.id.rightArrow);
         TextView modeLabel = findViewById(R.id.modeLabel);
         TextView timeColumnLabel = findViewById(R.id.timeColumn);
 
+        // Manipulate screen according to which scoreboard is displayed
         switch (currentMode) {
             case 0:
                 leftArrow.setVisibility(View.INVISIBLE);
@@ -61,6 +65,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Move to previous scoreboard
     public void scrollLeft(View v) {
         if (currentMode != 0) {
             currentMode--;
@@ -68,6 +73,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Move to next scoreboard
     public void scrollRight(View v) {
         if (currentMode != 4) {
             currentMode++;
@@ -75,6 +81,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Show default values of zero for score and time if no scores are found
     private void presetInfo() {
         TextView[] timeLabels = getTimeLabels();
         TextView[] scoreLabels = getScoreLabels();
@@ -92,6 +99,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Delete scores for selected mode, warning user first
     public void deleteMode(View v) {
         final TextView modeLabel = findViewById(R.id.modeLabel);
         new AlertDialog.Builder(this)
@@ -116,6 +124,7 @@ public class ScoreboardsMode extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null).show();
     }
 
+    // Delete scores for all modes, warning user first
     public void deleteAll(View v) {
         new AlertDialog.Builder(this)
                 .setTitle("Warning!")
@@ -137,14 +146,17 @@ public class ScoreboardsMode extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null).show();
     }
 
+    // Find and display scores for selected mode
     private void getScores() {
         TextView[] timeLabels = getTimeLabels();
         TextView[] scoreLabels = getScoreLabels();
 
+        // Find all scores for selected mode
         RealmResults<Scoreboard> scores = realm.where(Scoreboard.class)
                 .equalTo("mode", findMode())
                 .findAll();
 
+        // Sort scores by highest score first, then by fastest time taken
         scores = scores.sort("score", Sort.DESCENDING, "time", Sort.ASCENDING);
 
         for (int i = 0; i < scores.size(); i++) {
@@ -154,6 +166,7 @@ public class ScoreboardsMode extends AppCompatActivity {
                 if (currentMode != 4) {
                     timeLabels[i].setText(time);
                 } else if (currentMode == 4){
+                    // Calculate and display average answer time for challenge mode
                     int totalMins = Integer.parseInt(time.split(":")[0]);
                     double totalSeconds = Integer.parseInt(time.split(":")[1]);
                     int averageMins = totalMins / score;
@@ -175,6 +188,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Get string representation of selected mode
     private String findMode() {
         switch (currentMode) {
             case 0:
@@ -190,6 +204,7 @@ public class ScoreboardsMode extends AppCompatActivity {
         }
     }
 
+    // Methods to get reference to group of time and score text labels
     private TextView[] getTimeLabels() {
         TextView[] timeLabels = new TextView[5];
         timeLabels[0] = findViewById(R.id.time1);
